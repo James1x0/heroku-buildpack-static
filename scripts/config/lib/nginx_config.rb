@@ -35,6 +35,7 @@ class NginxConfig
       cleaned_path = uri.path
       cleaned_path.chop! if cleaned_path.end_with?("/")
       json["proxies"][loc]["path"] = cleaned_path
+      json["proxies"][loc]["websocket"] = hash['websocket']
       json["proxies"][loc]["host"] = uri.dup.tap {|u| u.path = '' }.to_s
       %w(http https).each do |scheme|
         json["proxies"][loc]["redirect_#{scheme}"] = uri.dup.tap {|u| u.scheme = scheme }.to_s
