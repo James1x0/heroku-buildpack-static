@@ -10,6 +10,7 @@ class NginxConfig
     https_only: false,
     worker_connections: 512,
     resolver: "8.8.8.8",
+    max_body_size: "1M",
     logging: {
       "access" => true,
       "error" => "error"
@@ -44,6 +45,7 @@ class NginxConfig
 
     json["clean_urls"] ||= DEFAULT[:clean_urls]
     json["https_only"] ||= DEFAULT[:https_only]
+    json["max_body_size"] ||= DEFAULT[:max_body_size]
 
     json["routes"] ||= {}
     json["routes"] = NginxConfigUtil.parse_routes(json["routes"])
