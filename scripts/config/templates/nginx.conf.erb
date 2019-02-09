@@ -95,17 +95,16 @@ http {
   <% proxies.each do |location, hash| %>
     set $<%= hash['name'] %> <%= hash['host'] %>;
     location @<%= location %> {
-      rewrite ^<%= location %>/?(.*)$ <%= hash['path'] %>/$1 break;
       # can reuse variable set above
       proxy_pass $<%= hash['name'] %>;
-      proxy_set_header Host $host;
 
       <% if hash['allow_websocket_upgrade'] == true %>
       proxy_redirect off;
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
+      proxy_set_header Connection $http_connection;
       <% else %>
+      rewrite ^<%= location %>/?(.*)$ <%= hash['path'] %>/$1 break;
       proxy_ssl_server_name on;
       <% %w(http https).each do |scheme| %>
       proxy_redirect <%= hash["redirect_#{scheme}"] %> <%= location %>;
