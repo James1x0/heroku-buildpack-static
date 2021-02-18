@@ -7,5 +7,5 @@ if [ ! -f "$build_dir/static.json" ]; then
     exit 1
 fi
 
-echo 'Static HTML'
+echo 'Static HTML aedev'
 exit 0
