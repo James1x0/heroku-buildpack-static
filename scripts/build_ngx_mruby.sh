@@ -2,8 +2,13 @@
 
 set -euo pipefail
 
-NGX_MRUBY_VERSION='2.2.3'
+NGX_MRUBY_VERSION='2.6.0'
 NGX_MRUBY_URL="https://github.com/matsumotory/ngx_mruby/archive/v${NGX_MRUBY_VERSION}.tar.gz"
+
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash;
+eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)";
+rbenv install 3.3.5;
+rbenv global 3.3.5
 
 echo "Building ngx_mruby v${NGX_MRUBY_VERSION} for ${STACK}"
 
