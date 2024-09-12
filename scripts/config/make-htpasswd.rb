@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'json'
 
 USER_CONFIG = "/app/static.json"

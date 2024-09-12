@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'fileutils'
 require 'erb'
 require_relative 'lib/nginx_config'

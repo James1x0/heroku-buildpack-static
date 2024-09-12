@@ -15,10 +15,12 @@ case $(ulimit -u) in
   ;;
 esac
 
-"${HERE}/config/make-config"
+echo "What ruby version? : $(ruby -v)"
+
+ruby "${HERE}/config/make-config.rb"
 
 # Create .htpasswd if BASIC_AUTH_USERNAME and BASIC_AUTH_PASSWORD are provided
-"${HERE}/config/make-htpasswd"
+ruby "${HERE}/config/make-htpasswd.rb"
 
 # make a shared pipe; we'll write the name of the process that exits to it once
 # that happens, and wait for that event below this particular call works on
