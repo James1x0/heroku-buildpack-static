@@ -17,6 +17,7 @@ case "${STACK}" in
     ;;
   heroku-24)
     nginx_archive_url='https://aedev-heroku-buildpack-static.s3.amazonaws.com/heroku-24/nginx-1.25.2-ngx_mruby-2.6.0.tgz'
+    ;;
   *)
     echo "Stack ${STACK} is not supported! Using heroku-20. This might not work."
     nginx_archive_url="https://heroku-buildpack-static.s3.amazonaws.com/heroku-20/nginx-1.19.0-ngx_mruby-2.2.3.tgz"
