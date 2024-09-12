@@ -19,12 +19,13 @@ case "${STACK}" in
     nginx_archive_url='https://aedev-heroku-buildpack-static.s3.amazonaws.com/heroku-24/nginx-1.25.2-ngx_mruby-2.6.0.tgz'
     ;;
   *)
-    echo "Stack ${STACK} is not supported! Using heroku-20. This might not work."
-    nginx_archive_url="https://heroku-buildpack-static.s3.amazonaws.com/heroku-20/nginx-1.19.0-ngx_mruby-2.2.3.tgz"
+    echo "Stack ${STACK} is not supported!"
+    exit 1;
     ;;
 esac
 
 mkdir -p $build_dir/bin
+echo "Downloading: $nginx_archive_url";
 curl -sSf --retry 3 --connect-timeout 3 "${nginx_archive_url}" | tar -xzC "${build_dir}/bin"
 nginx_version=$("${build_dir}/bin/nginx" -v |& cut -d '/' -f 2-)
 cp -a $bp_dir/scripts/{boot,config} -t $build_dir/bin/
