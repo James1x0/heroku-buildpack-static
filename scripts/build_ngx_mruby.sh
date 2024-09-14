@@ -10,6 +10,9 @@ eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)";
 rbenv install 3.3.5;
 rbenv global 3.3.5
 
+echo "linking ruby path"
+ln -s ~/.rbenv/shims /usr/bin/ruby
+
 echo "Building ngx_mruby v${NGX_MRUBY_VERSION} for ${STACK}"
 
 BUILD_DIR=$(mktemp -d /tmp/ngx_mruby.XXXX)
