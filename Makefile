@@ -17,8 +17,8 @@ build-heroku-20:
 	@docker run -v "$(shell pwd)":/buildpack --rm -it -e "STACK=heroku-20" heroku/heroku:20-build /buildpack/scripts/build_ngx_mruby.sh
 
 build-heroku-24:
-	@docker pull heroku/heroku:24-build_linux-amd64 --platform=linux/amd64
-	@docker run -v "$(shell pwd)":/buildpack --rm --platform=linux/amd64 -it -e "STACK=heroku-24" heroku/heroku:24-build_linux-amd64 /buildpack/scripts/build_ngx_mruby.sh
+	@docker pull heroku/heroku:24-build
+	@docker run -v "$(shell pwd)":/buildpack --rm -it -e "STACK=heroku-24" heroku/heroku:24-build /buildpack/scripts/build_ngx_mruby.sh
 
 sync:
 	@echo "Performing dry run of sync to $(S3_BUCKET)..."
